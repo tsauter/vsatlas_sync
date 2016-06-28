@@ -193,6 +193,8 @@ func main() {
 		log.Level(lumber.DEBUG)
 	}
 
+	startingTime := time.Now()
+
 	log.Info("*** Downloading available boxes from %s", *vsatlasMasterUri)
 	log.Info("*** Storing boxes in %s", *localBoxFilepath)
 
@@ -241,6 +243,9 @@ func main() {
 		log.Error("Failed to clean box directory: %s", err)
 		os.Exit(1)
 	}
+
+	elapsed := time.Since(startingTime)
+	log.Info("Sync completed in %s.", elapsed)
 
 	os.Exit(0)
 }
